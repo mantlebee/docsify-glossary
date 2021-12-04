@@ -1,6 +1,6 @@
 {
   "name": "@mantlebee/docsify-glossary",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A simple glossary plugin for docsify",
   "main": "src",
   "scripts": {

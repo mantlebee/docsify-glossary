@@ -86,15 +86,15 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/glossary.js":
-/*!*************************!*\
-  !*** ./src/glossary.js ***!
-  \*************************/
-/*! exports provided: install */
+/***/ "./src/constants.js":
+/*!**************************!*\
+  !*** ./src/constants.js ***!
+  \**************************/
+/*! exports provided: GlossaryOptionsDefault */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"install\", function() { return install; });\nfunction install (hook, vm) {\n    hook.beforeEach(function(content,next) {\n\n        if(window.location.hash.match(/_glossary/g)){\n          next(content);\n          return;\n        }\n\n        let addLinks = function(content,next,terms){\n          for (let term in terms){\n            console.log(term);\n\n            let link = ` [$1](/_glossary?id=${terms[term]}) `;\n            let re = new RegExp(`\\\\s(${term})\\\\s`,'ig');\n            content = content.replace(re,link);\n          }\n          next(content);\n        }\n\n        if(!window.$docsify.terms){\n          fetch('_glossary.md').then(function(data){\n            data.text().then(function(text){\n              window.$docsify.terms = {};\n\n              let lines = text.split('\\n');\n\n              lines.forEach(function(line){\n                if(line.match(/#####/g)){\n                  let term = line.replace('#####','').trim();\n                  let id = term.toLowerCase().replace(' ','-');\n\n                  window.$docsify.terms[term] = id;\n                }\n              });\n\n              addLinks(content,next,window.$docsify.terms);\n            })\n          })\n        } else{\n          addLinks(content,next,window.$docsify.terms);\n        }\n\n      });\n}\n\n//# sourceURL=webpack:///./src/glossary.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GlossaryOptionsDefault\", function() { return GlossaryOptionsDefault; });\nconst GlossaryOptionsDefault = {\n  filePaths: { \"/\": \"_glossary.md\" },\n  caseSensitive: true,\n  glossaryTermPrefix: \"##\",\n  matchDocumentationTerm: (term, slug) => term,\n};\n\n\n//# sourceURL=webpack:///./src/constants.js?");
 
 /***/ }),
 
@@ -106,7 +106,43 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _glossary__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./glossary */ \"./src/glossary.js\");\n\n\nif (!window.$docsify) {\n  window.$docsify = {}\n}\n\nwindow.$docsify.plugins = (window.$docsify.plugins || []).concat(_glossary__WEBPACK_IMPORTED_MODULE_0__[\"install\"])\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _plugin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./plugin */ \"./src/plugin.js\");\n\r\n\r\nif (!window.$docsify) window.$docsify = {};\r\nif (!window.$docsify.glossary) window.$docsify.glossary = {};\r\nif (!window.$docsify.plugins) window.$docsify.plugins = [];\r\nwindow.$docsify.plugins.push(_plugin__WEBPACK_IMPORTED_MODULE_0__[\"GlossaryPlugin\"]);\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/models.js":
+/*!***********************!*\
+  !*** ./src/models.js ***!
+  \***********************/
+/*! exports provided: TermsMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TermsMap\", function() { return TermsMap; });\nclass TermsMap {\n  constructor() {\n    if (!window.$docsify.glossary.__termsMap) {\n      window.$docsify.glossary.__termsMap = {};\n    }\n    this._map = window.$docsify.glossary.__termsMap;\n  }\n  get isEmpty() {\n    return !Boolean(this.keys.length);\n  }\n  get keys() {\n    return Object.keys(this._map);\n  }\n  addTerm(term) {\n    const slug = createSlug(term);\n    this._map[term] = slug;\n  }\n  forEach(delegate) {\n    this.keys.forEach((a) => delegate(a, this._map[a]));\n  }\n}\n\n\n//# sourceURL=webpack:///./src/models.js?");
+
+/***/ }),
+
+/***/ "./src/plugin.js":
+/*!***********************!*\
+  !*** ./src/plugin.js ***!
+  \***********************/
+/*! exports provided: GlossaryPlugin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GlossaryPlugin\", function() { return GlossaryPlugin; });\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/constants.js\");\n/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./models */ \"./src/models.js\");\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\r\n\r\n\r\n\r\nfunction GlossaryPlugin(hook, vm) {\r\n  hook.beforeEach((content, next) => {\r\n    const {\r\n      caseSensitive,\r\n      filePaths,\r\n      glossaryTermPrefix,\r\n      matchDocumentationTerm,\r\n    } = {\r\n      ..._constants__WEBPACK_IMPORTED_MODULE_0__[\"GlossaryOptionsDefault\"],\r\n      ...window.$docsify.glossary,\r\n    };\r\n    const url = arguments[1].route.path;\r\n    const termsMap = new _models__WEBPACK_IMPORTED_MODULE_1__[\"TermsMap\"]();\r\n    const filePath = Object(_utils__WEBPACK_IMPORTED_MODULE_2__[\"getGlossaryFilePathByUrl\"])(filePaths, url);\r\n    if (!filePath) next(content);\r\n    const replaceTermsWithLinks = () => {\r\n      termsMap.forEach((term, slug) => {\r\n        const page = filePath.replace(\".md\", \"\");\r\n        const link = `[${term}](${page}?id=${slug})`;\r\n        const regexQuery = matchDocumentationTerm(term, slug);\r\n        const regexOptions = caseSensitive ? \"g\" : \"gi\";\r\n        const regex = new RegExp(regexQuery, regexOptions);\r\n        content = content.replace(regex, link);\r\n      });\r\n      next(content);\r\n    };\r\n    if (termsMap.isEmpty)\r\n      Object(_utils__WEBPACK_IMPORTED_MODULE_2__[\"populateTermsMap\"])(termsMap, filePath, glossaryTermPrefix).then(\r\n        replaceTermsWithLinks\r\n      );\r\n    else replaceTermsWithLinks();\r\n  });\r\n}\r\n\n\n//# sourceURL=webpack:///./src/plugin.js?");
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/*! exports provided: createSlug, getGlossaryFilePathByUrl, populateTermsMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createSlug\", function() { return createSlug; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getGlossaryFilePathByUrl\", function() { return getGlossaryFilePathByUrl; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"populateTermsMap\", function() { return populateTermsMap; });\nfunction createSlug(str) {\n  str = str.replace(/^\\s+|\\s+$/g, \"\"); // trim\n  str = str.toLowerCase();\n  // remove accents, swap ñ for n, etc\n  var from = \"àáäâèéëêìíïîòóöôùúüûñç·/_,:;\";\n  var to = \"aaaaeeeeiiiioooouuuunc------\";\n  for (var i = 0, l = from.length; i < l; i++) {\n    str = str.replace(new RegExp(from.charAt(i), \"g\"), to.charAt(i));\n  }\n  str = str\n    .replace(/[^a-z0-9 -]/g, \"\") // remove invalid chars\n    .replace(/\\s+/g, \"-\") // collapse whitespace and replace by -\n    .replace(/-+/g, \"-\"); // collapse dashes\n  return str;\n}\n\nfunction getGlossaryFilePathByUrl(filePaths, url) {\n  var key = Object.keys(filePaths).find((a) => {\n    const regex = new RegExp(`^${a}`, \"i\");\n    return regex.test(url);\n  });\n  return `${key}/${filePaths[key]}`;\n}\n\nasync function populateTermsMap(termsMap, filePath, glossaryTermPrefix) {\n  const data = await fetch(filePath);\n  const text = await data.text();\n  const lines = text.split(\"\\n\");\n  lines.forEach((line) => {\n    const linePrefixRegex = new RegExp(`^${glossaryTermPrefix}`);\n    if (line.match(linePrefixRegex)) {\n      const term = line.replace(glossaryTermPrefix, \"\").trim();\n      termsMap.addTerm(term);\n    }\n  });\n}\n\n\n//# sourceURL=webpack:///./src/utils.js?");
 
 /***/ })
 

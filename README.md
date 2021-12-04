@@ -11,7 +11,7 @@ Fork of [TheGreenToaster/docsify-glossary](https://github.com/TheGreenToaster/do
 1. Insert script into docsify document
 
 ```html
-<script src="//unpkg.com/@mantlebee/docsify-glossary/dist/docsify-glossary.min.js"</script
+<script src="//unpkg.com/@mantlebee/docsify-glossary/dist/docsify-glossary.min.js"></script>
 ```
 
 1. Create a `_glossary.md` file in the root directory
