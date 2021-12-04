@@ -1,5 +1,5 @@
 {
-  "name": "docsify-glossary",
+  "name": "@mantlebee/docsify-glossary",
   "version": "0.0.1",
   "description": "A simple glossary plugin for docsify",
   "main": "src",
@@ -15,14 +15,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheGreenToaster/docsify-glossary.git"
+    "url": "git+https://github.com/mantlebee/docsify-glossary.git"
   },
-  "author": "TheGreenToaster",
+  "author": "MantleBee",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TheGreenToaster/docsify-glossary/issues"
+    "url": "https://github.com/mantlebee/docsify-glossary/issues"
   },
-  "homepage": "https://github.com/TheGreenToaster/docsify-glossary#readme",
+  "homepage": "https://github.com/mantlebee/docsify-glossary#readme",
   "devDependencies": {
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9"
