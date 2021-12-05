@@ -19,17 +19,33 @@ Fork of [TheGreenToaster/docsify-glossary](https://github.com/TheGreenToaster/do
 
 ### Usage
 
-- Terms must be predicated with `## ` to get recognized by the glossary
+- Terms must be predicated with `##` to get recognized by the glossary
 - Terms are replaced with links in the order that they appear in the glossary file.
 
-## Advanced Start
+#### Example: with default options
+
+File `_glossary.md`
+
+```markdown
+## Main User
+
+Primary user of the platform
+```
+
+File `user-example.md`
+
+```markdown
+The Main user is responsible for ...
+```
+
+## Advanced Usage
 
 The configuration object allows to change the default behaviour.
 
 ```javascript
 window.$docsify.glossary = {
   filePaths: { "/": "_glossary.md" },
-  caseSensitive: true,
+  caseSensitive: false,
   glossaryTermPrefix: "## ",
   matchDocumentationTerm: ((term, slug) = term),
 };
