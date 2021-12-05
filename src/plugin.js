@@ -1,10 +1,6 @@
 import { GlossaryOptionsDefault } from "./constants";
 import { TermsMap } from "./models";
-import {
-  createSlug,
-  getGlossaryFilePathByUrl,
-  populateTermsMap,
-} from "./utils";
+import { getGlossaryFilePathByUrl, populateTermsMap } from "./utils";
 
 export function GlossaryPlugin(hook, vm) {
   hook.beforeEach((content, next) => {

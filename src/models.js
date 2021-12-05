@@ -1,3 +1,5 @@
+import { createSlug } from "./utils";
+
 export class TermsMap {
   constructor() {
     if (!window.$docsify.glossary.__termsMap) {
