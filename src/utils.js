@@ -19,7 +19,7 @@ export function getGlossaryFilePathByUrl(filePaths, url) {
     const regex = new RegExp(`^${a}`, "i");
     return regex.test(url);
   });
-  return filePaths[key];
+  return key && filePaths[key];
 }
 
 export async function populateTermsMap(termsMap, filePath, glossaryTermPrefix) {
