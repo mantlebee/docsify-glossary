@@ -1,3 +1,7 @@
+?> All occurrencies from the `_glossary.md` page are replaced (case insensitive).  
+See the source code for pre-replace text.  
+Examples: Morpheus, morpheus, Morpheus&Neo, "Morpheus showed ...", Morpheus' ship
+
 # The Matrix
 
 Morpheus delivers this monologue to Neo as he explains to him how the Matrix works, and how to escape it.
