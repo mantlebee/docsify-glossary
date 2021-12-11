@@ -7,7 +7,7 @@
     "build": "npm run build:dev && npm run build:prod",
     "build:dev": "webpack src/index.js -o dist/docsify-glossary.js --mode=development",
     "build:prod": "webpack src/index.js -o dist/docsify-glossary.min.js --mode=production",
-    "example:default": "docsify serve example/default"
+    "example:default": "npm run build:dev && copyfiles dist/* examples/default && docsify serve examples/default"
   },
   "files": [
     "src",
@@ -25,8 +25,12 @@
   },
   "homepage": "https://github.com/mantlebee/docsify-glossary#readme",
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "docsify-cli": "^4.4.3",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "slug": "^5.1.0"
   }
 }
