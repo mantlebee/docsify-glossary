@@ -6,8 +6,9 @@ export function GlossaryPlugin(hook, vm) {
   hook.beforeEach((content, next) => {
     const {
       caseSensitive,
+      convertGlossaryTermRegexMatch,
       filePaths,
-      glossaryTermPrefix,
+      glossaryTermRegex,
       matchDocumentationTerm,
     } = {
       ...GlossaryOptionsDefault,
@@ -28,9 +29,12 @@ export function GlossaryPlugin(hook, vm) {
       next(content);
     };
     if (termsMap.isEmpty)
-      populateTermsMap(termsMap, filePath, glossaryTermPrefix).then(
-        replaceTermsWithLinks
-      );
+      populateTermsMap(
+        termsMap,
+        filePath,
+        glossaryTermRegex,
+        convertGlossaryTermRegexMatch
+      ).then(replaceTermsWithLinks);
     else replaceTermsWithLinks();
   });
 }

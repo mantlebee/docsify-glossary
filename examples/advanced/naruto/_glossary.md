@@ -12,7 +12,7 @@ Itachi Uchiha (うちはイタチ, Uchiha Itachi) was a shinobi of Konohagakure'
 
 _Credits: [Narutopedia - Itachi](https://naruto.fandom.com/wiki/Itachi_Uchiha)_
 
-## Kakashi
+## Kakashi (Hatake)
 
 Kakashi Hatake (はたけカカシ, Hatake Kakashi) is a shinobi of Konohagakure's Hatake clan. Famed as Kakashi of the Sharingan (写輪眼のカカシ, Sharingan no Kakashi), he is one of Konoha's most talented ninja, regularly looked to for advice and leadership despite his personal dislike of responsibility. To his students on Team 7, Kakashi emphasises the importance of teamwork; he himself received this lesson, along with the Sharingan, from his childhood friend, Obito Uchiha.
 

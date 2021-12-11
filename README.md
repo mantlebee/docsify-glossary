@@ -50,10 +50,11 @@ The configuration object allows to change the default behaviour.
 
 ```javascript
 window.$docsify.glossary = {
-  filePaths: { "/": "_glossary.md" },
+  filePaths: { "/": "/_glossary.md" },
   caseSensitive: false,
-  glossaryTermPrefix: "## ",
-  matchDocumentationTerm: ((term, slug) = term),
+  glossaryTermRegex: /^## .{1,}/,
+  convertGlossaryTermRegexMatch: (match) => match.replace("## ", ""),
+  matchDocumentationTerm: (term, slug) => term,
 };
 ```
 

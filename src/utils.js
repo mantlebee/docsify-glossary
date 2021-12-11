@@ -6,14 +6,19 @@ export function getGlossaryFilePathByUrl(filePaths, url) {
   return key && filePaths[key];
 }
 
-export async function populateTermsMap(termsMap, filePath, glossaryTermPrefix) {
+export async function populateTermsMap(
+  termsMap,
+  filePath,
+  glossaryTermRegex,
+  convertGlossaryTermRegexMatch
+) {
   const data = await fetch(filePath);
   const text = await data.text();
   const lines = text.split("\n");
   lines.forEach((line) => {
-    const linePrefixRegex = new RegExp(`^${glossaryTermPrefix}`);
-    if (line.match(linePrefixRegex)) {
-      const term = line.replace(glossaryTermPrefix, "").trim();
+    const match = line.match(glossaryTermRegex);
+    if (match) {
+      const term = convertGlossaryTermRegexMatch(match[0]);
       termsMap.addTerm(term);
     }
   });

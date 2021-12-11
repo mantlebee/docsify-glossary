@@ -14,7 +14,7 @@ Morpheus is a Zion operative who serves in the city's defense force against atta
 
 _Credits: [The Matrix WiKi - Morpheus](https://matrix.fandom.com/wiki/Morpheus)_
 
-## Neo
+## Neo - The One
 
 Neo is a former bluepill rescued by Morpheus together with the crew of the Nebuchadnezzar. As a redpill, he was prophesied by The Oracle to be The One and was set out on a course to free humanity from the Matrix and to ultimately end the centuries-long Machine War.
 
