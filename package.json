@@ -7,6 +7,7 @@
     "build": "npm run build:dev && npm run build:prod",
     "build:dev": "webpack src/index.js -o dist/docsify-glossary.js --mode=development",
     "build:prod": "webpack src/index.js -o dist/docsify-glossary.min.js --mode=production",
+    "example:advanced": "npm run build:dev && copyfiles dist/* examples/advanced && docsify serve examples/advanced",
     "example:default": "npm run build:dev && copyfiles dist/* examples/default && docsify serve examples/default"
   },
   "files": [

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>docsify-glossary - Example: default</title>
+  <title>docsify-glossary - Example: advanced</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport"
@@ -13,6 +13,17 @@
 
 <body>
   <div id="app"></div>
+  <script>
+    window.$docsify = {
+      relativePath: true,
+      glossary: {
+        filePaths: { "/matrix": "/matrix/_glossary.md", "/naruto": "/naruto/_glossary.md" },
+        caseSensitive: true,
+        glossaryTermPrefix: "## ",
+        matchDocumentationTerm: (term, slug) => `{${term}}`,
+      }
+    };
+  </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="./dist/docsify-glossary.js"></script>
 </body>
