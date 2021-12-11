@@ -1,5 +1,3 @@
-?> All occurrencies from the `_glossary.md` page are replaced (case sensitive), only if sorrounded by `{}`.
-
 # The Matrix
 
 {Morpheus} delivers this monologue to {Neo} as he explains to him how the Matrix works, and how to escape it.
