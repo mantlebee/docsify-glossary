@@ -1,4 +1,4 @@
-import { createSlug } from "./utils";
+import slug from "slug";
 
 export class TermsMap {
   constructor() {
@@ -14,8 +14,7 @@ export class TermsMap {
     return Object.keys(this._map);
   }
   addTerm(term) {
-    const slug = createSlug(term);
-    this._map[term] = slug;
+    this._map[term] = slug(term);
   }
   forEach(delegate) {
     this.keys.forEach((a) => delegate(a, this._map[a]));
