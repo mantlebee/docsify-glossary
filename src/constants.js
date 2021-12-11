@@ -1,6 +1,6 @@
 export const GlossaryOptionsDefault = {
   filePaths: { "/": "/_glossary.md" },
   caseSensitive: false,
-  glossaryTermPrefix: "##",
+  glossaryTermPrefix: "## ",
   matchDocumentationTerm: (term, slug) => term,
 };

@@ -19,8 +19,14 @@ Fork of [TheGreenToaster/docsify-glossary](https://github.com/TheGreenToaster/do
 
 ### Usage
 
-- Terms must be predicated with `##` to get recognized by the glossary
+- Terms must be predicated with `"## "` (without quotes) to get recognized by the glossary
 - Terms are replaced with links in the order that they appear in the glossary file.
+
+See the `examples/default` example, running
+
+```bash
+npm run example:default
+```
 
 #### Example: with default options
 
