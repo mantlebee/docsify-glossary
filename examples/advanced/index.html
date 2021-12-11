@@ -19,7 +19,7 @@
       glossary: {
         filePaths: { "/matrix": "/matrix/_glossary.md", "/naruto": "/naruto/_glossary.md" },
         caseSensitive: true,
-        glossaryTermRegex: /^## \w{1,}/,
+        glossaryTermRegex: /^## (\w| ){1,}/,
         convertGlossaryTermRegexMatch: match => match.replace("## ", "").trim(),
         matchDocumentationTerm: (term, slug) => `{${term}}`,
       }

@@ -12,13 +12,13 @@ Itachi Uchiha (うちはイタチ, Uchiha Itachi) was a shinobi of Konohagakure'
 
 _Credits: [Narutopedia - Itachi](https://naruto.fandom.com/wiki/Itachi_Uchiha)_
 
-## Kakashi (Hatake)
+## Kakashi Hatake
 
 Kakashi Hatake (はたけカカシ, Hatake Kakashi) is a shinobi of Konohagakure's Hatake clan. Famed as Kakashi of the Sharingan (写輪眼のカカシ, Sharingan no Kakashi), he is one of Konoha's most talented ninja, regularly looked to for advice and leadership despite his personal dislike of responsibility. To his students on Team 7, Kakashi emphasises the importance of teamwork; he himself received this lesson, along with the Sharingan, from his childhood friend, Obito Uchiha.
 
 _Credits: [Narutopedia - Kakashi](https://naruto.fandom.com/wiki/Kakashi_Hatake)_
 
-## Sasuke
+## Sasuke (Uchica)
 
 Sasuke Uchiha (うちはサスケ, Uchiha Sasuke) is one of the last surviving members of Konohagakure's Uchiha clan. After his older brother, Itachi, slaughtered their clan, Sasuke made it his mission in life to avenge them by killing Itachi. He is added to Team 7 upon becoming a ninja and, through competition with his rival and best friend, Naruto Uzumaki.
 
