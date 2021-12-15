@@ -3,7 +3,12 @@ export function getGlossaryFilePathByUrl(filePaths, url) {
     const regex = new RegExp(`^${a}`, "i");
     return regex.test(url);
   });
-  return key && filePaths[key];
+  if (key) {
+    const basePath = (window.$docsify && window.$docsify.basePath) || "";
+    const filePath = `${basePath}${filePaths[key]}`;
+    return filePath;
+  }
+  return null;
 }
 
 export async function populateTermsMap(
