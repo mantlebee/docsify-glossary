@@ -1,6 +1,6 @@
 {
   "name": "@mantlebee/docsify-glossary",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A simple glossary plugin for docsify",
   "main": "src",
   "scripts": {
@@ -8,7 +8,8 @@
     "build:dev": "webpack src/index.js -o dist/docsify-glossary.js --mode=development",
     "build:prod": "webpack src/index.js -o dist/docsify-glossary.min.js --mode=production",
     "example:advanced": "npm run build:dev && copyfiles dist/* examples/advanced && docsify serve examples/advanced",
-    "example:default": "npm run build:dev && copyfiles dist/* examples/default && docsify serve examples/default"
+    "example:default": "npm run build:dev && copyfiles dist/* examples/default && docsify serve examples/default",
+    "prepublish": "npm run build"
   },
   "files": [
     "src",

@@ -1,6 +1,10 @@
 import { GlossaryOptionsDefault } from "./constants";
 import { TermsMap } from "./models";
-import { getGlossaryFilePathByUrl, populateTermsMap } from "./utils";
+import {
+  getBasePath,
+  getGlossaryFilePathByUrl,
+  populateTermsMap,
+} from "./utils";
 
 export function GlossaryPlugin(hook, vm) {
   hook.beforeEach((content, next) => {
@@ -20,7 +24,10 @@ export function GlossaryPlugin(hook, vm) {
     if (!filePath) next(content);
     const replaceTermsWithLinks = () => {
       termsMap.forEach((term, slug) => {
-        const link = `[${term}](${filePath}?id=${slug})`;
+        let glossaryPath = filePath;
+        const basePath = getBasePath();
+        if (basePath) glossaryPath = glossaryPath.replace(basePath, "");
+        const link = `[${term}](${glossaryPath}?id=${slug})`;
         const regexQuery = matchDocumentationTerm(term, slug);
         const regexOptions = caseSensitive ? "g" : "gi";
         const regex = new RegExp(regexQuery, regexOptions);

@@ -1,12 +1,17 @@
+export function getBasePath() {
+  if (window.$docsify && window.$docsify.basePath)
+    return window.$docsify.basePath.replace(/\/$/, "");
+  return "";
+}
+
 export function getGlossaryFilePathByUrl(filePaths, url) {
   var key = Object.keys(filePaths).find((a) => {
     const regex = new RegExp(`^${a}`, "i");
     return regex.test(url);
   });
   if (key) {
-    const basePath = (window.$docsify && window.$docsify.basePath) || "";
-    const filePath = `${basePath}${filePaths[key]}`;
-    return filePath;
+    const basePath = getBasePath();
+    return `${basePath}${filePaths[key]}`;
   }
   return null;
 }
